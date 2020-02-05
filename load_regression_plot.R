@@ -23,11 +23,11 @@ boot_pi <- function(model, pdata, n, p) {
 }
 
 # load dataset
-df <- read_csv(file="epidata.Rdata")
-df <- df %>% mutate(Wuhan_airtravel=Wuhan_airtravel+1) # add a small constant to travel volume
+load(file="~/Desktop/Corona/epidata.Rdata")
+df <- df %>% mutate(Wuhan_airtravel_1=Wuhan_airtravel+1) # add a small constant to travel volume
 
 # fit the data
-mdl <- glm(Cases ~ 1+offset( log(Wuhan_airtravel) ), data = df, family=poisson( link="log" ) )
+mdl <- glm(Cases_lm ~ 1+offset( log(Wuhan_airtravel_1) ), data = df, family=poisson( link="log" ) )
 new_data <- df
 
 # compute the prediction intervals
