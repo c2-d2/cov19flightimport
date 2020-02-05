@@ -34,11 +34,14 @@ new_data <- df
 PI<-boot_pi(mdl, new_data, 50000, 0.95)
 
 # visualisation
+df$fit<-PI$pred
+df$lwr<-PI$lower
+df$upr<-PI$upper
 ggplot(df)+
-                geom_point(aes(x=Wuhan_airtravel,y=Cases),size=3, alpha=1)+
+                geom_point(aes(x=Wuhan_airtravel,y=Cases_lm),size=3, alpha=1)+
                 geom_line(aes(x=Wuhan_airtravel,y=fit),size=1, colour="grey80")+
                 geom_line(aes(x=Wuhan_airtravel,y=lwr),size=1, colour="darkred", linetype=2)+
                 geom_line(aes(x=Wuhan_airtravel,y=upr),size=1, colour="grey80", linetype=2)+
-                geom_text(aes(x=Wuhan_airtravel,y=Cases, label=Country), hjust=0.5 , vjust=-0.8, size=3.8)+
+                geom_text(aes(x=Wuhan_airtravel,y=Cases_lm, label=Country), hjust=0.5 , vjust=-0.8, size=3.8)+
                 ylab("Reported cases")+
                 xlab("Average number passanger/day")
