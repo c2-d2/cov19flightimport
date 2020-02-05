@@ -6,6 +6,7 @@ lapply(pkgs, require, character.only = T)
 registerDoParallel(cores = 4)
 
 # functions
+# inspired by: https://stackoverflow.com/questions/17922637/prediction-intervals-for-poisson-regression-on-r
 boot_pi <- function(model, pdata, n, p) {
                 odata <- model$data
                 lp <- (1 - p) / 2
