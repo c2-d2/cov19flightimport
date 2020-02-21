@@ -61,6 +61,8 @@ df_all <- df_all %>%
 # fit the data
 df_fit <- df_all %>% filter(ghs_high==1) # rnows=49
 mdl <- glm(Cases_lm ~ 1+offset( log(Wuhan_airtravel_gamma) ), data = df_fit, family=poisson( link="log" ) )
+# alternatively for fitting overdispersed poisson
+# mdl <- glm(Cases_lm ~ 1+offset( log(Wuhan_airtravel_gamma) ), data = df_fit, family=quasipoisson( link="log" ) )
 new_data <- df_all
 # compute the prediction intervals
 PI<-boot_pi(mdl, new_data, 50000, 0.95)
