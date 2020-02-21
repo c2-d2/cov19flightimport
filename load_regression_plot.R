@@ -42,6 +42,8 @@ df_ghs <- read_csv(file="~/Desktop/Corona/ghs_index.csv",col_names = F) %>%
 # bind datasets 
 df_all <- full_join( df_ghs,df, by="Country" ) %>% mutate( Cases_lm=replace_na(Cases_lm,replace=0),
                                                             Wuhan_airtravel=replace_na(Wuhan_airtravel,replace=0)) 
+df_all <- df_all %>% filter(Country!="China") # remove epicenter China
+
 # settings
 min_airtravel <- 3 
 ghs_quantile <- 0.75
