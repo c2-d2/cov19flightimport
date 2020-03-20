@@ -56,7 +56,8 @@ df_all <- df_all %>%
                                        Wuhan_airtravel) ) %>% 
   mutate( ghs_high=as.numeric(ghs>ghs_limit) )
 
-df_all %>% mutate(n=1:n()) %>% select(n,Country,ghs,Wuhan_airtravel) %>% arrange(desc(Wuhan_airtravel)) %>% print(n=20) %>% filter(n<12)
+# For selection
+#df_all %>% mutate(n=1:n()) %>% select(n,Country,ghs,Wuhan_airtravel) %>% arrange(desc(Wuhan_airtravel)) %>% print(n=20) %>% filter(n<12)
 
 # fit the data
 df_fit <- df_all %>% filter(ghs_high==1) # rnows=49
